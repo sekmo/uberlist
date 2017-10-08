@@ -1,0 +1,70 @@
+// =====================================================================================
+// === * LAYOUT * ======================================================================
+// =====================================================================================
+
+.wrapper{
+  // padding-left: 1em;
+  // padding-right: 1em;
+  margin: 0 auto;
+  max-width: 940px;
+}
+
+header{
+  padding: 2rem $default-padding;
+  height: 10rem;
+  background: $green;
+  color: white;
+}
+
+.site-title {
+  font-size: 30px;
+  font-weight: 200;
+  margin: 0;
+  text-decoration: none !important;
+  line-height: 62px;
+}
+
+.main{
+  background: white;
+  font-size: 1.4rem;
+  float: left;
+  padding: $default-padding;
+  flex: 1;
+  width: 72%;
+}
+
+.content{
+  min-height: calc(100% - 10rem - 5.6rem);
+  display: flex;
+}
+
+
+.sidebar{
+  font-size: 1.4rem;
+  background: #fafafa;
+  padding: $default-padding;
+  width: 28%;
+  border-right: 1px solid #eee;
+  & h1 a {
+    text-decoration: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+footer {
+  font-size: 1.2rem;
+  border-top: 1px solid #d8d8d8;
+  text-align: center;
+  color: #666;
+  padding: .5em;
+  background: #eee;
+}

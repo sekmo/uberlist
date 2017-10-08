@@ -1,0 +1,6 @@
+<%= form_for([@project, @project.tasks.build]) do |f| %>
+  <div class="field">
+    <%= f.text_field :content, placeholder: "New task" %>
+    <%= f.submit %>
+  </div>
+<% end %>

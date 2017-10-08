@@ -1,0 +1,12 @@
+<h1><%= @project.name %></h1>
+<%= link_to "Rename Project", edit_project_path(@project) %> /
+<%= link_to "Delete Project", project_path(@project), method: :delete %>
+
+<br><br>
+<div class="task-index">
+  <div>
+    <%= render "tasks/form" %>
+  </div>
+  <br>
+  <%= render @project.tasks.order(created_at: :desc) %>
+</div>

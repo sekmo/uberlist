@@ -1,0 +1,63 @@
+// =====================================================================================
+// === * MODULES * ======================================================================
+// =====================================================================================
+
+
+
+.notice-container{
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  & > div{
+    background: tomato;
+    padding: 18px 0;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+// form.button_to {
+//   display: inline-block;
+// }
+
+.project-index {
+  padding-left: 0;
+  list-style: none;
+  & li {
+    margin-left: -$default-padding;
+    margin-right: -$default-padding;
+    background: white;
+    border-top: 1px solid #ddd;
+    &:last-child {
+      border-bottom: 1px solid #ddd;
+    }
+    & a {
+      display: block;
+      text-decoration: none;
+      padding: 10px $default-padding;
+    }
+  }
+}
+
+
+.task-index {
+  &__task {
+    &__name {
+      display: inline-block;
+      min-width: 150px;
+    }
+    & > form {
+      display: inline-block;
+    }
+  }
+}
+
+.flash {
+  margin-left: -$default-padding;
+  margin-right: -$default-padding;
+  margin-top: -$default-padding;
+  background: yellow;
+  margin-bottom: 20px;
+  padding: 1rem $default-padding;
+}
