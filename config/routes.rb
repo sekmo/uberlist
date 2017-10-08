@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: "projects#index"
   resources :projects do
-    resources :tasks do
+    resources :tasks, shallow: true do
       member do
         patch :complete, :uncomplete
       end
