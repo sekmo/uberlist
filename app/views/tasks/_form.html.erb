@@ -1,4 +1,5 @@
-<%= form_for([@project, @project.tasks.build]) do |f| %>
+<%= form_for([@task.project, @task]) do |f| %>
+  <%= error_messages_for @task %>
   <div class="field">
     <%= f.text_field :content, placeholder: "New task" %>
     <%= f.submit %>
