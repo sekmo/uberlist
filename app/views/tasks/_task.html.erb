@@ -1,4 +1,5 @@
-<div class="task">
-  <span class="task__content"><%= task.content %></span>
+<li class="task-index__task <%= "completed" if task.completed %>">
+  <span class="task-index__task__content"><%= task.content %></span>
+  <%= link_to "Mark as complete", complete_project_task_path(@project, task.id), method: :patch %>
   <%= link_to "Delete", project_task_path(@project, task.id), method: :delete, data: { confirm: "Are you sure?" } %>
-</div>
+</li>

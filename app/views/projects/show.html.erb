@@ -3,10 +3,14 @@
 <%= link_to "Delete Project", project_path(@project), method: :delete %>
 
 <br><br>
-<div class="task-index">
-  <div>
-    <%= render "tasks/form" %>
-  </div>
-  <br>
-  <%= render @project.tasks.order(created_at: :desc) %>
+<div>
+  <%= render "tasks/form" %>
 </div>
+<br>
+<ul class="task-index">
+  <%= render @project.tasks.order(created_at: :desc) %>
+</ul>
+
+<% if @project.tasks.count == 0 %>
+  <p>Your project is empty. Why don't you add some tasks?</p>
+<% end %>

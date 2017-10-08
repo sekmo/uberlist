@@ -4,18 +4,18 @@
 
 
 
-.notice-container{
-  width: 100%;
-  text-align: center;
-  position: absolute;
-  & > div{
-    background: tomato;
-    padding: 18px 0;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-}
+// .notice-container{
+//   width: 100%;
+//   text-align: center;
+//   position: absolute;
+//   & > div{
+//     background: tomato;
+//     padding: 18px 0;
+//     width: 100%;
+//     max-width: 600px;
+//     margin: 0 auto;
+//   }
+// }
 
 // form.button_to {
 //   display: inline-block;
@@ -42,13 +42,11 @@
 
 
 .task-index {
-  &__task {
-    &__name {
-      display: inline-block;
-      min-width: 150px;
-    }
-    & > form {
-      display: inline-block;
+  padding-left: 0;
+  list-style: none;
+  &__task{
+    &.completed > &__content {
+      text-decoration: line-through;
     }
   }
 }
@@ -60,4 +58,15 @@
   background: yellow;
   margin-bottom: 20px;
   padding: 1rem $default-padding;
+}
+
+.error-explanation {
+  border: 1px solid #eee;
+  background: #f8f8f8;
+  padding: 0 1rem;
+  margin-bottom: 2em;
+}
+
+.field_with_errors {
+  display: inline;
 }
