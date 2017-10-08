@@ -2,6 +2,6 @@
   <%= link_to project.name, project %>
   <% if local_assigns[:show_buttons] %>
     <%= link_to "Edit", edit_project_path(project) %>
-    <%= link_to "Destroy", project, method: :delete, data: { confirm: "Are you sure?" } %>
+    <%= link_to "Destroy", project, method: :delete %>
   <% end %>
 </li>

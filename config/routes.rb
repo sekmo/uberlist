@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :projects do
     resources :tasks do
       member do
-        patch :complete
+        patch :complete, :uncomplete
       end
     end
   end

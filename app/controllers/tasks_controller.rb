@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_project
-  before_action :set_task, only: [:destroy, :complete]
+  before_action :set_task, only: [:destroy, :complete, :uncomplete]
 
   def new
     @task = @project.tasks.build
@@ -26,7 +26,12 @@ class TasksController < ApplicationController
 
   def complete
     @task.update!(completed: true)
-    redirect_to @project, notice: "Task completed"
+    redirect_to @project
+  end
+
+  def uncomplete
+    @task.update!(completed: false)
+    redirect_to @project
   end
 
   private
