@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature "Managing projects", type: :feature do
+  before do
+    @user = create(:user)
+    login_as @user, scope: :user
+  end
+
   scenario "User adds a new Project" do
     visit projects_path
     click_link "create"
@@ -13,7 +18,7 @@ RSpec.feature "Managing projects", type: :feature do
   end
 
   scenario "User removes a Project" do
-    project = FactoryGirl.create(:project, name: "Organize trip to Praga")
+    project = create(:project, name: "Organize trip to Praga", user: @user)
     visit projects_path
     click_link "Organize trip to Praga"
     expect {

@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.feature "Managing tasks", type: :feature do
   before do
-    @project = FactoryGirl.create(:project, name: "Organize trip to Praga")
+    user = create(:user)
+    login_as user, scope: :user
+    @project = create(:project, name: "Organize trip to Praga", user: user)
   end
 
   scenario "User adds a new Task" do
@@ -16,7 +18,7 @@ RSpec.feature "Managing tasks", type: :feature do
   end
 
   scenario "User removes a Task" do
-    FactoryGirl.create(:task, project: @project, content: "Buy tickets")
+    create(:task, project: @project, content: "Buy tickets")
     visit project_path(@project.id)
     task_span = find("span", text: "Buy tickets")
     task_container = task_span.first(:xpath,".//..")
@@ -30,7 +32,7 @@ RSpec.feature "Managing tasks", type: :feature do
   end
 
   scenario "User marks a Task as complete" do
-    task = FactoryGirl.create(:task, project: @project, content: "Buy tickets")
+    task = create(:task, project: @project, content: "Buy tickets")
     visit project_path(@project.id)
     task_span = find("span", text: "Buy tickets")
     task_container = task_span.first(:xpath,".//..")
@@ -42,7 +44,7 @@ RSpec.feature "Managing tasks", type: :feature do
   end
 
   scenario "User marks a Task as incomplete" do
-    task = FactoryGirl.create(:task, project: @project, content: "Buy tickets", completed: true)
+    task = create(:task, project: @project, content: "Buy tickets", completed: true)
     visit project_path(@project.id)
     task_span = find("span", text: "Buy tickets")
     task_container = task_span.first(:xpath,".//..")

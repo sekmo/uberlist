@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects
   end
 
   def show
@@ -10,14 +10,14 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = Project.new
+    @project = current_user.projects.build
   end
 
   def edit
   end
 
   def create
-    @project = Project.new(project_params)
+    @project = current_user.projects.build(project_params)
     if @project.save
       redirect_to @project, notice: "Project was successfully created."
     else
@@ -42,6 +42,9 @@ class ProjectsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:id])
+    project_owner? @project
+    rescue ActiveRecord::RecordNotFound
+      redirect_to_root_with_error
   end
 
   def project_params

@@ -8,14 +8,19 @@
   </head>
   <body>
     <header>
-      <%= render "layouts/header" %>
+      <div class="">
+        <a href="<%= root_path %>" class="site-title">UberList</a>
+      </div>
     </header>
     <div class="content">
       <div class="sidebar">
-        <h1><%= link_to "Projects", projects_path %></h1>
-        <%= render "projects/project_index" %>
+        <h1>Welcome</h1>
+        <p>
+          <%= link_to "Login", new_user_session_path %> or <%= link_to "Register", new_user_registration_path %>
+          to use Uberlist!
+        </p>
       </div>
-      <div class="main clearfix">
+      <div class="main">
         <%= render "layouts/flash" %>
         <%= yield %>
       </div>

@@ -1,10 +1,6 @@
 class TasksController < ApplicationController
-  before_action :set_project, only: [:new, :create]
   before_action :set_task, only: [:destroy, :complete, :uncomplete]
-
-  def new
-    @task = @project.tasks.build
-  end
+  before_action :set_project
 
   def create
     @task = @project.tasks.build(task_params)
@@ -36,12 +32,21 @@ class TasksController < ApplicationController
 
   private
 
-  def set_project
-    @project = Project.find(params[:project_id])
-  end
-
   def set_task
     @task = Task.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to_root_with_error
+  end
+
+  def set_project
+    if @task
+      @project = @task.project
+    else
+      @project = Project.find(params[:project_id])
+    end
+    project_owner? @project
+    rescue ActiveRecord::RecordNotFound
+      redirect_to_root_with_error
   end
 
   def task_params

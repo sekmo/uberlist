@@ -6,9 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Project.create!(name: "Build the Cabin")
-Project.create!(name: "Plan the picnic")
-Project.create!(name: "Arrange trip to LA")
+user = User.create!(email: "francescojjmari@gmail.com", password: "francesco")
+Project.create!(name: "Build the Cabin", user: user)
+Project.create!(name: "Plan the picnic", user: user)
+Project.create!(name: "Arrange trip to LA", user: user)
 
 30.times do
   Task.create!(project_id: rand(1..3), content: Faker::Food.ingredient)

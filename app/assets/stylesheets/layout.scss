@@ -14,6 +14,9 @@ header{
   height: 10rem;
   background: $green;
   color: white;
+  & .header__inner {
+
+  }
 }
 
 .site-title {
