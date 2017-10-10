@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    @projects = current_user.projects
+    @projects = Project.find_by_user(current_user)
   end
 
   def show
