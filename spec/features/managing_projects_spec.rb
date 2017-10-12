@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "Managing projects", type: :feature do
   before do
-    @user = create(:user)
-    login_as @user, scope: :user
+    tom = create(:user)
+    login_as tom, scope: :user
   end
 
   scenario "User adds a new Project" do

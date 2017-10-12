@@ -5,14 +5,11 @@ RSpec.describe Project, type: :model do
     let(:tom) { create(:user) }
     let(:jerry) { create(:user) }
     let(:jerry_project) { create(:project, user: jerry) }
-    before do
-      create(:project, user: tom)
-      create(:project, user: tom)
-      create(:project, user: tom)
-    end
 
     it "returns the projects that belong to the user" do
-      expect(Project.find_by_user(tom).count).to eq(3)
+      tom_projects = []
+      3.times { tom_projects << create(:project, user: tom) }
+      expect(Project.find_by_user(tom)).to eq(tom_projects)
     end
 
     it "doesn't return the projects that belong other users" do
