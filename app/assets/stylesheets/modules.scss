@@ -40,13 +40,39 @@
   }
 }
 
+.flash-container {
+  float: right;
+  font-size: 1.4rem;
+  min-width: 280px;
+}
+
 .flash {
-  margin-left: -$default-padding;
-  margin-right: -$default-padding;
-  margin-top: -$default-padding;
-  background: yellow;
-  margin-bottom: 20px;
   padding: 1rem $default-padding;
+  &:not(:first-child) {
+    border-top: 1px solid rgba(0,0,0,.08);
+  }
+  &.success,
+  &.notice,
+  &.alert, {
+    background: yellow;
+  }
+  &.error {
+    background: tomato;
+  }
+  button {
+    float: right;
+    background: transparent;
+    border: none;
+    margin-left: 15px;
+    color: #333;
+    font-size: 21px;
+    margin-top: -9px;
+    padding: 8px;
+    cursor: pointer;
+    &:focus {
+        outline: none;
+    }
+  }
 }
 
 .error-explanation {
