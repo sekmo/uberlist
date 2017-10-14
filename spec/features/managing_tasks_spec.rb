@@ -38,7 +38,7 @@ RSpec.feature "Managing tasks", type: :feature do
     task_container = task_span.first(:xpath,".//..")
     expect {
       within task_container do
-        click_link "Mark as complete"
+        click_button "Mark as complete"
       end
     }.to change { task.reload.completed }.from(false).to(true)
   end
@@ -50,7 +50,7 @@ RSpec.feature "Managing tasks", type: :feature do
     task_container = task_span.first(:xpath,".//..")
     expect {
       within task_container do
-        click_link "Mark as incomplete"
+        click_button "Mark as incomplete"
       end
     }.to change { task.reload.completed }.from(true).to(false)
   end
