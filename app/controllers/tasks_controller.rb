@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:destroy, :complete, :uncomplete]
   before_action :set_project
+  after_action :flash_discard_if_xhr, only: :destroy
 
   def create
     @task = @project.tasks.build(task_params)
@@ -14,10 +15,11 @@ class TasksController < ApplicationController
   def destroy
     if @task.destroy
       flash[:success] = "Task was successfully deleted."
-    else
-      flash[:error] = "Error in your request."
     end
-    redirect_to @task.project
+    respond_to do |format|
+      format.html { redirect_to @task.project }
+      format.js
+    end
   end
 
   def complete

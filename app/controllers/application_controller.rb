@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
+  def flash_discard_if_xhr
+    flash.discard if request.xhr?
+  end
+
   private
 
   def layout_by_resource

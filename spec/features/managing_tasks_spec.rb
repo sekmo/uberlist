@@ -24,7 +24,7 @@ RSpec.feature "Managing tasks", type: :feature do
     task_container = task_span.first(:xpath,".//..")
     expect {
       within task_container do
-        click_link "Delete"
+        click_button "Delete"
       end
     }.to change { @project.tasks.count }.by(-1)
     expect(page).to have_content "Task was successfully deleted"

@@ -1,0 +1,13 @@
+var taskClass = ".js-task-" + "<%= @task.id %>";
+var task = document.querySelector(taskClass);
+task.parentNode.removeChild(task);
+
+var flash = document.createElement('div');
+flash.classList.add('flash', 'success', 'js-flash-to-show');
+flash.style.opacity = 0;
+var flashInner = document.createElement('div');
+flashInner.classList.add('flash__inner');
+flashInner.innerText = "<%= flash[:success] %>";
+flash.appendChild(flashInner);
+document.getElementsByClassName('flash-container')[0].appendChild(flash);
+showFlashesWithButton();
