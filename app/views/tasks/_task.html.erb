@@ -1,4 +1,4 @@
-<li class="task-index__task <%= "completed" if task.completed %>">
+<li class="task-index__task <%= "completed " if task.completed %>js-task-<%= "#{task.id}"%>">
   <span class="task-index__task__content"><%= task.content %></span>
   <%= mark_as_complete_link(task: task, completed: task.completed) %>
   <%= link_to "Delete", task_path(task), method: :delete %>

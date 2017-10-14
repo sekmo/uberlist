@@ -1,0 +1,3 @@
+var taskClass = ".js-task-" + "<%= @task.id %>";
+var task = document.querySelector(taskClass);
+task.innerHTML = "<%= j render @task %>";

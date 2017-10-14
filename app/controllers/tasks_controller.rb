@@ -22,12 +22,18 @@ class TasksController < ApplicationController
 
   def complete
     @task.update!(completed: true)
-    redirect_to @task.project
+    respond_to do |format|
+      format.html { redirect_to @task.project }
+      format.js
+    end
   end
 
   def uncomplete
     @task.update!(completed: false)
-    redirect_to @task.project
+    respond_to do |format|
+      format.html { redirect_to @task.project }
+      format.js
+    end
   end
 
   private

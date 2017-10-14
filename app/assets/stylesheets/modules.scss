@@ -34,6 +34,9 @@
   padding-left: 0;
   list-style: none;
   &__task{
+    form.button_to {
+      display: inline-block;
+    }
     &.completed > &__content {
       text-decoration: line-through;
     }
