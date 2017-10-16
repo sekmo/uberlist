@@ -4,7 +4,8 @@ document.addEventListener("turbolinks:load", function() {
 
 function showFlashesWithButton(){
   var flashesToShow = document.querySelectorAll('.flash.js-flash-to-show');
-  flashesToShow.forEach(function(flashToShow){
+  for(var i = 0; i < flashesToShow.length; i++) {
+    var flashToShow = flashesToShow[i];
     flashToShow.style.opacity = 0;
     var button = document.createElement("button");
     button.innerText = "×";
@@ -15,7 +16,7 @@ function showFlashesWithButton(){
       $(flashToShow).fadeTo(500, 1);
       flashToShow.classList.remove('js-flash-to-show');
     }, 500, flashToShow);
-  });
+  }
 }
 
 function closeFlash() {
