@@ -14,9 +14,6 @@ header{
   height: 10rem;
   background: $green;
   color: white;
-  & .header__inner {
-
-  }
 }
 
 .site-title {
@@ -41,7 +38,6 @@ header{
   display: flex;
 }
 
-
 .sidebar{
   font-size: 1.4rem;
   background: #fafafa;
@@ -52,16 +48,6 @@ header{
     text-decoration: none;
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 footer {
   font-size: 1.2rem;
