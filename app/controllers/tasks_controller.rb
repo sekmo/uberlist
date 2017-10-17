@@ -6,10 +6,19 @@ class TasksController < ApplicationController
   def create
     @task = @project.tasks.build(task_params)
     if @task.save
-      redirect_to @project, notice: "Task was successfully created."
+      flash[:success] = "Task was successfully created."
+      respond_to do |format|
+        format.html { redirect_to @project }
+        format.js
+      end
     else
-      render "projects/show"
+      respond_to do |format|
+        format.html { render "projects/show" }
+        format.js
+      end
     end
+
+
   end
 
   def destroy

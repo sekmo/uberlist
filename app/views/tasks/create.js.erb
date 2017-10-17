@@ -1,0 +1,25 @@
+<% if @task.valid? %>
+  var newTaskHTML = "<%= j render @task %>";
+  newTask = $.parseHTML(newTaskHTML);
+  var taskIndex = document.querySelector(".task-index");
+  taskIndex.insertBefore(newTask[0], taskIndex.children[0]);
+  document.querySelector("#task_content").value = "";
+
+  <% #TODO: extract flash helper %>
+  var flash = document.createElement('div');
+  flash.classList.add('flash', 'success', 'js-flash-to-show');
+  flash.style.opacity = 0;
+  var flashInner = document.createElement('div');
+  flashInner.classList.add('flash__inner');
+  flashInner.innerText = "<%= flash[:success] %>";
+  flash.appendChild(flashInner);
+  document.getElementsByClassName('flash-container')[0].appendChild(flash);
+  showFlashesWithButton();
+
+  var taskForm = document.querySelector(".new_task");
+  <% @task = @project.tasks.build %>
+  taskForm.innerHTML = "<%= j render "tasks/form"  %>";
+<% else %>
+  var taskForm = document.querySelector(".new_task");
+  taskForm.innerHTML = "<%= j render "tasks/form" %>";
+<% end %>
