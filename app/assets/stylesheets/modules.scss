@@ -31,7 +31,13 @@
   padding-left: 0;
   list-style: none;
   &__task{
+    padding: 10px 0;
+    border-bottom: 1px solid #EEE;
     form.button_to {
+      display: inline-block;
+    }
+    &__content {
+      min-width: 200px;
       display: inline-block;
     }
     &.completed > &__content {
