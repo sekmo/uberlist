@@ -1,8 +1,8 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :find_projects, only: [:index, :show, :new, :edit]
 
   def index
-    @projects = Project.find_by_user(current_user)
   end
 
   def show
@@ -45,6 +45,10 @@ class ProjectsController < ApplicationController
     project_owner? @project
     rescue ActiveRecord::RecordNotFound
       redirect_to_root_with_error
+  end
+
+  def find_projects
+    @projects = Project.find_by_user(current_user)
   end
 
   def project_params

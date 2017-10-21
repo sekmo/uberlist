@@ -1,6 +1,7 @@
-<ul class="project-index">
-  <%= render Project.find_by_user(current_user) %>
-</ul>
-<% if Project.find_by_user(current_user).blank? %>
-<p>You currently have no projects.</p>
+<% if @projects.any? %>
+  <ul class="project-index">
+    <%= render @projects %>
+  </ul>
+<% else %>
+  <p>You currently have no projects.</p>
 <% end %>
