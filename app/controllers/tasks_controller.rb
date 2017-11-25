@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:destroy, :complete, :uncomplete]
   before_action :set_project
-  after_action :flash_discard_if_xhr, only: :destroy
+  after_action :flash_discard_if_xhr, only: [:destroy, :create]
 
   def create
     @task = @project.tasks.build(task_params)
