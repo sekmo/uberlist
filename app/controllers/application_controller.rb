@@ -3,7 +3,15 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   layout :layout_by_resource
 
-  protected
+  private
+
+  def layout_by_resource
+   if devise_controller?
+     "devise"
+   else
+     "application"
+   end
+  end
 
   def project_owner?(project)
     if project.user != current_user
@@ -18,15 +26,5 @@ class ApplicationController < ActionController::Base
 
   def flash_discard_if_xhr
     flash.discard if request.xhr?
-  end
-
-  private
-
-  def layout_by_resource
-   if devise_controller?
-     "devise"
-   else
-     "application"
-   end
   end
 end
