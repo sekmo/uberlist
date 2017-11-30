@@ -17,8 +17,6 @@ class TasksController < ApplicationController
         format.js
       end
     end
-
-
   end
 
   def destroy

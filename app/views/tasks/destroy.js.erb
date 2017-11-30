@@ -1,13 +1,6 @@
-var taskClass = ".js-task-" + "<%= @task.id %>";
-var task = document.querySelector(taskClass);
+var task = document.querySelector('.js-task-' + '<%= @task.id %>');
 task.parentNode.removeChild(task);
-
-var flash = document.createElement('div');
-flash.classList.add('flash', 'success', 'js-flash-to-show');
-flash.style.opacity = 0;
-var flashInner = document.createElement('div');
-flashInner.classList.add('flash__inner');
-flashInner.innerText = "<%= flash[:success] %>";
-flash.appendChild(flashInner);
-document.getElementsByClassName('flash-container')[0].appendChild(flash);
-showFlashesWithButton();
+var flashMessageHTML = '<%= j flash_message("success", flash[:success]) %>';
+var flashMessageElement = $.parseHTML(flashMessageHTML)[0];
+appendHiddenFlashMessage(flashMessageElement);
+showFlashMessagesWithButton();

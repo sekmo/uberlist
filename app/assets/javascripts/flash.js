@@ -1,28 +1,32 @@
-document.addEventListener("turbolinks:load", function() {
-  showFlashesWithButton();
-});
-
-function showFlashesWithButton(){
-  var flashesToShow = document.querySelectorAll('.flash.js-flash-to-show');
-  for(var i = 0; i < flashesToShow.length; i++) {
-    var flashToShow = flashesToShow[i];
-    flashToShow.style.opacity = 0;
-    var button = document.createElement("button");
-    button.innerText = "×";
+function showFlashMessagesWithButton() {
+  var flashMessages = document.querySelectorAll('.flash.js-flash-to-show');
+  for (var i = 0; i < flashMessages.length; i++) {
+    var flashMessage = flashMessages[i];
+    flashMessage.style.opacity = 0;
+    var button = document.createElement('button');
+    button.innerText = '×';
     button.onclick = closeFlash;
-    flashToShow.children[0].appendChild(button);
-
-    setTimeout(function(flashToShow) {
-      $(flashToShow).fadeTo(500, 1);
-      flashToShow.classList.remove('js-flash-to-show');
-    }, 500, flashToShow);
+    flashMessage.children[0].appendChild(button);
+    setTimeout(function() {
+      $(flashMessage).fadeTo(500, 1);
+      flashMessage.classList.remove('js-flash-to-show');
+    }, 500);
   }
 }
 
 function closeFlash() {
-  var flash = this.parentNode.parentNode;
-  var flashContainer = document.querySelector('.flash-container');
-  $(flash).fadeTo(250, 0, function(){
-    flashContainer.removeChild(flash);
+  var flashMessage = this.parentNode.parentNode;
+  var flashContainer = flashMessage.parentNode;
+  $(flashMessage).fadeTo(250, 0, function() {
+    flashContainer.removeChild(flashMessage);
   });
 }
+
+function appendHiddenFlashMessage(flashMessage) {
+  flashMessageElement.style.opacity = 0;
+  document.querySelector('.flash-container').appendChild(flashMessageElement);
+}
+
+document.addEventListener('turbolinks:load', function() {
+  showFlashMessagesWithButton();
+});

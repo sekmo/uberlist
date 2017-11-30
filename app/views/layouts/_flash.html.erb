@@ -1,7 +1,0 @@
-<div class="flash-container">
-  <% flash.each do |key, value| %>
-    <%= content_tag :div, class: "flash #{key} js-flash-to-show" do %>
-      <%= content_tag :div, value, class: "flash__inner" %>
-    <% end %>
-  <% end %>
-</div>

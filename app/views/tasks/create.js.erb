@@ -1,30 +1,22 @@
 <% if @task.valid? %>
-  var newTaskHTML = "<%= j render @task %>";
-  var newTask = $.parseHTML(newTaskHTML);
-  var taskIndex = document.querySelector(".task-index");
-  taskIndex.insertBefore(newTask[0], taskIndex.children[0]);
+  var newTaskHTML = '<%= j render @task %>';
+  var newTaskElement = $.parseHTML(newTaskHTML)[0];
+  var taskIndex = document.querySelector('.task-index');
+  taskIndex.insertBefore(newTaskElement, taskIndex.children[0]);
 
-  <% #TODO: extract flash helper %>
-  var flash = document.createElement('div');
-  flash.classList.add('flash', 'success', 'js-flash-to-show');
-  flash.style.opacity = 0;
-  var flashInner = document.createElement('div');
-  flashInner.classList.add('flash__inner');
-  flashInner.innerText = "<%= flash[:success] %>";
-  flash.appendChild(flashInner);
+  var flashMessageHTML = '<%= j flash_message("success", flash[:success]) %>';
+  var flashMessageElement = $.parseHTML(flashMessageHTML)[0];
+  appendHiddenFlashMessage(flashMessageElement);
+  showFlashMessagesWithButton();
 
-  document.getElementsByClassName('flash-container')[0].appendChild(flash);
-  showFlashesWithButton();
-
-  var taskForm = document.querySelector(".new_task");
+  var taskForm = document.querySelector('.new_task');
   <% @task = @project.tasks.build %>
-  taskForm.innerHTML = "<%= j render "tasks/form"  %>";
+  taskForm.innerHTML = '<%= j render "tasks/form"  %>';
 
-  var emptyProjectMessage = document.querySelector(".empty-project-message");
+  var emptyProjectMessage = document.querySelector('.empty-project-message');
   if(emptyProjectMessage != null) {
-    $(emptyProjectMessage).remove();
+    emptyProjectMessage.parentNode.removeChild(emptyProjectMessage);
   }
 <% else %>
-  var taskForm = document.querySelector(".new_task");
-  taskForm.innerHTML = "<%= j render "tasks/form" %>";
+  document.querySelector('.new_task').innerHTML = '<%= j render "tasks/form" %>';
 <% end %>
