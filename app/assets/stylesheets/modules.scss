@@ -19,6 +19,9 @@
     &:last-child {
       border-bottom: 1px solid #ddd;
     }
+    &.current {
+      background: #e6e6e6;
+    }
     & a {
       display: block;
       text-decoration: none;
