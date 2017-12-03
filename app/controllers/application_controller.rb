@@ -6,14 +6,14 @@ class ApplicationController < ActionController::Base
   private
 
   def layout_by_resource
-   if devise_controller?
-     "devise"
-   else
-     "application"
-   end
+    if devise_controller?
+      "devise"
+    else
+      "application"
+    end
   end
 
-  def project_owner?(project)
+  def check_project_owner(project)
     if project.user != current_user
       redirect_to_root_with_error
     end
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
-  def flash_discard_if_xhr
+  def discard_flash_if_xhr
     flash.discard if request.xhr?
   end
 end

@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:destroy, :complete, :uncomplete]
   before_action :set_project
-  after_action :flash_discard_if_xhr, only: [:destroy, :create]
+  after_action :discard_flash_if_xhr, only: [:destroy, :create]
 
   def create
     @task = @project.tasks.build(task_params)
@@ -59,7 +59,7 @@ class TasksController < ApplicationController
     else
       @project = Project.find(params[:project_id])
     end
-    project_owner? @project
+    check_project_owner @project
     rescue ActiveRecord::RecordNotFound
       redirect_to_root_with_error
   end
