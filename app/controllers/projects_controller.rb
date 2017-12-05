@@ -43,8 +43,8 @@ class ProjectsController < ApplicationController
   def set_project
     @project = Project.find(params[:id])
     check_project_owner @project
-    rescue ActiveRecord::RecordNotFound
-      redirect_to_root_with_error
+  rescue ActiveRecord::RecordNotFound
+    redirect_to_root_with_error
   end
 
   def find_user_projects

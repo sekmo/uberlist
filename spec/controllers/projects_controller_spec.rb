@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ProjectsController, type: :controller do
   describe "GET index" do
@@ -32,7 +32,7 @@ RSpec.describe ProjectsController, type: :controller do
 
       it "responds successfully" do
         sign_in @tom
-        get :show, params: { id: @tom_project.id }
+        get :show, params: {id: @tom_project.id}
         expect(response).to have_http_status "200"
       end
     end
@@ -46,7 +46,7 @@ RSpec.describe ProjectsController, type: :controller do
 
       it "redirects to the root" do
         sign_in @jerry
-        get :show, params: { id: @tom_project.id }
+        get :show, params: {id: @tom_project.id}
         expect(response).to redirect_to root_path
       end
     end
@@ -56,7 +56,7 @@ RSpec.describe ProjectsController, type: :controller do
         @project = create(:project)
       end
       it "redirects to the login" do
-        get :show, params: { id: @project.id }
+        get :show, params: {id: @project.id}
         expect(response).to redirect_to new_user_session_url
       end
     end
@@ -74,7 +74,7 @@ RSpec.describe ProjectsController, type: :controller do
           project_params = attributes_for(:project)
           sign_in @user
           expect {
-            post :create, params: { project: project_params }
+            post :create, params: {project: project_params}
           }.to change(@user.projects, :count).by(1)
         end
       end
@@ -84,7 +84,7 @@ RSpec.describe ProjectsController, type: :controller do
           project_params = attributes_for(:project, :invalid)
           sign_in @user
           expect {
-            post :create, params: { project: project_params }
+            post :create, params: {project: project_params}
           }.to_not change(@user.projects, :count)
         end
       end
@@ -93,7 +93,7 @@ RSpec.describe ProjectsController, type: :controller do
     context "as a guest" do
       it "redirects to the login" do
         project_params = attributes_for(:project)
-        post :create, params: { project: project_params }
+        post :create, params: {project: project_params}
         expect(response).to redirect_to new_user_session_url
       end
     end
@@ -111,7 +111,7 @@ RSpec.describe ProjectsController, type: :controller do
         it "updates a project" do
           project_params = attributes_for(:project, name: "New project name")
           sign_in @user
-          patch :update, params: { id: @project.id, project: project_params }
+          patch :update, params: {id: @project.id, project: project_params}
           expect(@project.reload.name).to eq "New project name"
         end
       end
@@ -120,7 +120,7 @@ RSpec.describe ProjectsController, type: :controller do
         it "doesn't update a project" do
           project_params = attributes_for(:project, name: nil)
           sign_in @user
-          patch :update, params: { id: @project.id, project: project_params }
+          patch :update, params: {id: @project.id, project: project_params}
           expect(@project.reload.name).to eq "Original project name"
         end
       end
@@ -128,7 +128,7 @@ RSpec.describe ProjectsController, type: :controller do
 
     context "as an unauthorized user" do
       before do
-        @tom   = create(:user)
+        @tom = create(:user)
         @tom_project = create(:project, user: @tom, name: "Original project name")
         @jerry = create(:user)
       end
@@ -136,14 +136,14 @@ RSpec.describe ProjectsController, type: :controller do
       it "doesn't update the project" do
         project_params = attributes_for(:project, name: "New Project Name")
         sign_in @jerry
-        patch :update, params: { id: @tom_project.id, project: project_params }
+        patch :update, params: {id: @tom_project.id, project: project_params}
         expect(@tom_project.reload.name).to eq "Original project name"
       end
 
       it "redirects to the root" do
         project_params = attributes_for(:project)
         sign_in @jerry
-        patch :update, params: { id: @tom_project.id, project: project_params }
+        patch :update, params: {id: @tom_project.id, project: project_params}
         expect(response).to redirect_to root_path
       end
     end
@@ -155,7 +155,7 @@ RSpec.describe ProjectsController, type: :controller do
 
       it "redirects to the login" do
         project_params = attributes_for(:project)
-        patch :update, params: { id: @project.id, project: project_params }
+        patch :update, params: {id: @project.id, project: project_params}
         expect(response).to redirect_to new_user_session_url
       end
     end
@@ -172,7 +172,7 @@ RSpec.describe ProjectsController, type: :controller do
       it "deletes a project" do
         sign_in @user
         expect {
-          delete :destroy, params: { id: @project.id }
+          delete :destroy, params: {id: @project.id}
         }.to change(@user.projects, :count).by(-1)
       end
     end
@@ -187,13 +187,13 @@ RSpec.describe ProjectsController, type: :controller do
       it "does not delete the project" do
         sign_in @jerry
         expect {
-          delete :destroy, params: { id: @tom_project.id }
+          delete :destroy, params: {id: @tom_project.id}
         }.to_not change(Project, :count)
       end
 
       it "redirects to the root" do
         sign_in @jerry
-        delete :destroy, params: { id: @tom_project.id }
+        delete :destroy, params: {id: @tom_project.id}
         expect(response).to redirect_to root_path
       end
     end
@@ -204,13 +204,13 @@ RSpec.describe ProjectsController, type: :controller do
       end
 
       it "redirects to the login" do
-        delete :destroy, params: { id: @project.id }
+        delete :destroy, params: {id: @project.id}
         expect(response).to redirect_to new_user_session_url
       end
 
       it "does not delete the project" do
         expect {
-          delete :destroy, params: { id: @project.id }
+          delete :destroy, params: {id: @project.id}
         }.to_not change(Project, :count)
       end
     end
@@ -242,27 +242,27 @@ RSpec.describe ProjectsController, type: :controller do
   describe "GET edit" do
     context "as an authorized user" do
       before do
-        @tom   = create(:user)
+        @tom = create(:user)
         @tom_project = create(:project, user: @tom, name: "Original project name")
       end
 
       it "responds successfully" do
         sign_in @tom
-        get :edit, params: { id: @tom_project.id }
+        get :edit, params: {id: @tom_project.id}
         expect(response).to have_http_status "200"
       end
     end
 
     context "as an unauthorized user" do
       before do
-        @tom   = create(:user)
+        @tom = create(:user)
         @tom_project = create(:project, user: @tom)
         @jerry = create(:user)
       end
 
       it "redirects to the root" do
         sign_in @jerry
-        get :edit, params: { id: @tom_project.id }
+        get :edit, params: {id: @tom_project.id}
         expect(response).to redirect_to root_path
       end
     end
@@ -273,7 +273,7 @@ RSpec.describe ProjectsController, type: :controller do
       end
 
       it "redirects to the login" do
-        get :edit, params: { id: @project.id }
+        get :edit, params: {id: @project.id}
         expect(response).to redirect_to new_user_session_url
       end
     end

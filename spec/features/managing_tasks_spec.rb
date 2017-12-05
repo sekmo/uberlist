@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.feature "Managing tasks", type: :feature do
   before do
@@ -22,7 +22,7 @@ RSpec.feature "Managing tasks", type: :feature do
     create(:task, project: @project, content: "Buy tickets")
     visit project_path(@project.id)
     task_span = find("span", text: "Buy tickets")
-    task_container = task_span.first(:xpath,".//..")
+    task_container = task_span.first(:xpath, ".//..")
     expect {
       within task_container do
         click_button "Delete"
@@ -37,7 +37,7 @@ RSpec.feature "Managing tasks", type: :feature do
     task = create(:task, project: @project, content: "Buy tickets")
     visit project_path(@project.id)
     task_span = find("span", text: "Buy tickets")
-    task_container = task_span.first(:xpath,".//..")
+    task_container = task_span.first(:xpath, ".//..")
     expect {
       within task_container do
         click_button "Mark as complete"
@@ -50,7 +50,7 @@ RSpec.feature "Managing tasks", type: :feature do
     task = create(:task, project: @project, content: "Buy tickets", completed: true)
     visit project_path(@project.id)
     task_span = find("span", text: "Buy tickets")
-    task_container = task_span.first(:xpath,".//..")
+    task_container = task_span.first(:xpath, ".//..")
     expect {
       within task_container do
         click_button "Mark as incomplete"
@@ -58,5 +58,4 @@ RSpec.feature "Managing tasks", type: :feature do
       end
     }.to change { task.reload.completed }.from(true).to(false)
   end
-
 end

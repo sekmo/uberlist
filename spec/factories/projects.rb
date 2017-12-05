@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :project do
-    name Faker::Book.title
+    name { Faker::Book.title }
     association :user
 
     trait :invalid do

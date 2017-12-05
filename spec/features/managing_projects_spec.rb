@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.feature "Managing projects", type: :feature do
   before do
@@ -18,7 +18,7 @@ RSpec.feature "Managing projects", type: :feature do
   end
 
   scenario "User removes a Project" do
-    project = create(:project, name: "Organize trip to Praga", user: @tom)
+    create(:project, name: "Organize trip to Praga", user: @tom)
     visit projects_path
     click_link "Organize trip to Praga"
     expect {

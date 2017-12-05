@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :task do
-    content Faker::Food.ingredient
+    content { Faker::Food.ingredient }
     association :project
-    completed false    
+    completed false
   end
 end

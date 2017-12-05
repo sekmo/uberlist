@@ -49,16 +49,16 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to_root_with_error
+  rescue ActiveRecord::RecordNotFound
+    redirect_to_root_with_error
   end
 
   def set_project
-    if @task
-      @project = @task.project
-    else
-      @project = Project.find(params[:project_id])
-    end
+    @project = if @task
+                 @task.project
+               else
+                 Project.find(params[:project_id])
+               end
     check_project_owner @project
     rescue ActiveRecord::RecordNotFound
       redirect_to_root_with_error
